@@ -1,0 +1,15 @@
+requests
+beautifulsoup4
+pandas
+numpy
+transformers
+torch
+yfinance
+newsapi-python
+fastapi
+uvicorn
+streamlit
+python-dotenv
+pytest
+black
+flake8
