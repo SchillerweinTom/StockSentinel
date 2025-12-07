@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # FastAPI Backend
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stocksentinel-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models:/app/models
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    networks:
+      - stocksentinel-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Streamlit Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stocksentinel-frontend
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    command: streamlit run frontend/app.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped
+    networks:
+      - stocksentinel-network
+    depends_on:
+      api:
+        condition: service_healthy
+
+networks:
+  stocksentinel-network:
+    driver: bridge
+
+volumes:
+  data:
+  logs:
+  models:
