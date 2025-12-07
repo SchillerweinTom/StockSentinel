@@ -1,5 +1,4 @@
 requests
-beautifulsoup4
 pandas
 numpy
 transformers
@@ -13,3 +12,8 @@ python-dotenv
 pytest
 black
 flake8
+sentencepiece
+pydantic
+plotly
+mypy
+python-dateutil
