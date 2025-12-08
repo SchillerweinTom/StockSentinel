@@ -44,8 +44,8 @@ services:
     networks:
       - stocksentinel-network
     depends_on:
-      api:
-        condition: service_healthy
+      - api
+        
 
 networks:
   stocksentinel-network:

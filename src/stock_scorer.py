@@ -95,7 +95,7 @@ class StockScorer:
         """
         # Consistency only matters with sufficient data
         if article_count < self.min_articles_for_consistency:
-            return 0.0 
+            return 0.0
 
         std = aggregated.get("std_score", 1.0)
 
