@@ -36,4 +36,4 @@ RUN mkdir -p data/processed logs models
 EXPOSE 8000 8501
 
 # Default command
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["bash"]

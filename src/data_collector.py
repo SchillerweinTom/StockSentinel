@@ -19,7 +19,6 @@ class NewsCollector:
     def __init__(self):
         """Initialize NewsCollector with API keys from environment"""
         self.news_api_key = os.getenv("NEWS_API_KEY")
-        self.alpha_vantage_key = os.getenv("ALPHA_VANTAGE_KEY")
         self.finnhub_key = os.getenv("FINNHUB_API_KEY")
 
         if not any([self.news_api_key, self.finnhub_key]):
